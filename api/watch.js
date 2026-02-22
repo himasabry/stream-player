@@ -15,7 +15,7 @@ export default function handler(req, res) {
     return res.status(404).send("Stream not found");
   }
 
-  // بدل ما نرجع JSON، نعمل Redirect مباشر للبث
+  // Redirect مباشر للبث
   const stream_url = channels[stream];
   res.redirect(stream_url);
 }
