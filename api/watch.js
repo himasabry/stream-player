@@ -2,26 +2,28 @@ import fs from "fs";
 import path from "path";
 
 export default function handler(req, res) {
-  const { stream } = req.query;
+  const { section, title, episode } = req.query;
 
-  if (!stream) {
-    return res.status(400).send("No stream provided");
+  if (!section || !title) {
+    return res.status(400).send("Missing parameters: section and title required");
   }
 
   const filePath = path.join(process.cwd(), "channels.json");
   const channels = JSON.parse(fs.readFileSync(filePath, "utf8"));
 
-  let stream_url = null;
-  // البحث في كل قسم
-  for (const section of Object.values(channels)) {
-    if (section[stream]) {
-      stream_url = section[stream];
-      break;
-    }
-  }
+  const sec = channels[section];
+  if (!sec) return res.status(404).send("Section not found");
 
-  if (!stream_url) {
-    return res.status(404).send("Stream not found");
+  let stream_url = null;
+
+  // لو المسلسل يحتوي حلقات
+  if (episode) {
+    if (!sec[title] || !sec[title][episode]) return res.status(404).send("Episode not found");
+    stream_url = sec[title][episode];
+  } else {
+    // برامج أو أفلام بدون حلقات
+    if (!sec[title]) return res.status(404).send("Title not found");
+    stream_url = sec[title];
   }
 
   // Redirect مباشر للبث
