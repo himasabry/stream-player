@@ -10,9 +10,9 @@ export default function handler(req, res) {
 
   let stream_url = null;
 
-  // البحث في مسلسلات (الحلقات داخل كل مسلسل)
+  // البحث في المسلسلات (كل مسلسل قسم منفصل)
   if (channels["مسلسلات"]) {
-    for (const [series, episodes] of Object.entries(channels["مسلسلات"])) {
+    for (const [seriesName, episodes] of Object.entries(channels["مسلسلات"])) {
       if (episodes[stream]) {
         stream_url = episodes[stream];
         break;
