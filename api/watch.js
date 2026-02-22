@@ -12,7 +12,7 @@ export default function handler(req, res) {
 
   // البحث في المسلسلات (كل مسلسل قسم منفصل)
   if (channels["مسلسلات"]) {
-    for (const [seriesName, episodes] of Object.entries(channels["مسلسلات"])) {
+    for (const episodes of Object.values(channels["مسلسلات"])) {
       if (episodes[stream]) {
         stream_url = episodes[stream];
         break;
