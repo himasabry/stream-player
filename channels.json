@@ -1,7 +1,13 @@
 {
-  "bS1-1": "https://vid2.rma-2026-zvde-dsn-05.site/Ramez-Level-El-Wahsh/03.mp4",
-  "bS1-2": "https://server1.com/live/",
-  "sport-1": "https://server2.com/streams/",
-  "sport-2": "https://server2.com/streams/",
-  "movie-1": "https://server3.com/hls/"
+  "مسلسلات": {
+    "bS1-1": "https://vid2.rma-2026-zvde-dsn-05.site/Ramez-Level-El-Wahsh/03.mp4",
+    "bS1-2": "https://server1.com/live/index.m3u8"
+  },
+  "رياضة": {
+    "sport-1": "https://server2.com/streams/index.m3u8",
+    "sport-2": "https://server2.com/streams/index.m3u8"
+  },
+  "أفلام": {
+    "movie-1": "https://server3.com/hls/index.m3u8"
+  }
 }
