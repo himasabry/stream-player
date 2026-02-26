@@ -32,6 +32,6 @@ export default function handler(req, res) {
 
   if (!stream_url) return res.status(404).send("Stream not found");
 
-  // Redirect مباشر للبث
+  // Redirect مباشر للبث → MP4 و HLS (m3u8)
   res.redirect(stream_url);
 }
