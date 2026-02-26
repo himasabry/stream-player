@@ -1,21 +1,21 @@
 {
   "مسلسلات": {
     "Ramez-Level-El-Wahsh": {
-      "Ramez-Level-El-Wahsh-03": "https://fvideo6d.ddns.me/2vod5n/darsh-8_muxed.mp4/playlist.m3u8",
+      "Ramez-Level-El-Wahsh-03": "https://vid2.rma-2026-zvde-dsn-05.site/Ramez-Level-El-Wahsh/03.mp4",
       "Ramez-Level-El-Wahsh-04": "https://vid2.rma-2026-zvde-dsn-05.site/Ramez-Level-El-Wahsh/04.mp4",
       "Ramez-Level-El-Wahsh-05": "https://vid2.rma-2026-zvde-dsn-05.site/Ramez-Level-El-Wahsh/05.mp4"
     },
-    "مسلسل-آخر": {
-      "مسلسل-آخر-01": "https://server1.com/series2/01.mp4",
-      "مسلسل-آخر-02": "https://server1.com/series2/02.mp4"
+    "مسلسل-HLS": {
+      "مسلسل-HLS-01": "https://fvideo6d.ddns.me/2vod5n/darsh-8_muxed.mp4/playlist.m3u8",
+      "مسلسل-HLS-02": "https://fvideo6d.ddns.me/2vod5n/darsh-9_muxed.mp4/playlist.m3u8"
     }
   },
   "برامج": {
     "برنامج-1": "https://server2.com/shows/show1.mp4",
-    "برنامج-2": "https://server2.com/shows/show2.mp4"
+    "برنامج-HLS": "https://fvideo6d.ddns.me/2vod5n/show2/playlist.m3u8"
   },
   "أفلام": {
     "فيلم-1": "https://server3.com/movies/movie1.mp4",
-    "فيلم-2": "https://server3.com/movies/movie2.mp4"
+    "فيلم-HLS": "https://fvideo6d.ddns.me/2vod5n/movie2/playlist.m3u8"
   }
 }
