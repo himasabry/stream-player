@@ -1,1 +1,5 @@
-public/live/super_tv_4/index.m3u8
+#EXTM3U
+#EXT-X-VERSION:3
+#EXT-X-TARGETDURATION:6
+#EXTINF:6,
+https://livepeercdn.studio/hls/fbb14ggj4tb98q21/index.m3u8
