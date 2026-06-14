@@ -4,7 +4,7 @@ export default async function handler(req, res) {
   const streams = {
     super_tv_1: "https://livepeercdn.studio/hls/852e99hrnjvck2kd/index.m3u8",
     super_tv_2: "https://livepeercdn.studio/hls/a01cg40ay26tre2d/index.m3u8",
-    super_tv_3: "https://livepeercdn.studio/hls/139bsadvu9tvxqg6/index.m3u8",
+    super_tv_3/index.m3u8: "https://livepeercdn.studio/hls/139bsadvu9tvxqg6/index.m3u8",
     super_tv_4: "https://livepeercdn.studio/hls/fbb14ggj4tb98q21/index.m3u8"
   };
 
