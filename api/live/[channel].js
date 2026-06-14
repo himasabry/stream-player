@@ -9,36 +9,22 @@ export default async function handler(req, res) {
   };
 
   const url = streams[channel];
-  if (!url) return res.status(404).send("Channel not found");
 
-  const response = await fetch(url);
-  let m3u8 = await response.text();
+  if (!url) {
+    return res.status(404).send("Channel not found");
+  }
 
-  const baseUrl = url.substring(0, url.lastIndexOf("/") + 1);
+  try {
+    const response = await fetch(url);
+    let m3u8 = await response.text();
 
-  // 🔥 1. تحويل أي playlists أو segments نسبية
-  m3u8 = m3u8.replace(
-    /(.*\.m3u8.*|.*\.ts.*)/g,
-    (line) => {
-      if (
-        line.startsWith("#") ||
-        line.startsWith("http")
-      ) return line;
+    // ✅ مهم: بدون أي تعديل على المحتوى
+    res.setHeader("Content-Type", "application/vnd.apple.mpegurl");
+    res.setHeader("Access-Control-Allow-Origin", "*");
 
-      return baseUrl + line;
-    }
-  );
+    return res.status(200).send(m3u8);
 
-  // 🔥 2. إعادة كتابة أي روابط داخلية لو حصل recursion
-  const host = `https://${req.headers.host}`;
-
-  m3u8 = m3u8.replace(
-    /(0_\d+\/index\.m3u8\?tkn=\d+)/g,
-    `${host}/api/live/${channel}/$1`
-  );
-
-  res.setHeader("Content-Type", "application/vnd.apple.mpegurl");
-  res.setHeader("Access-Control-Allow-Origin", "*");
-
-  return res.status(200).send(m3u8);
+  } catch (err) {
+    return res.status(500).send("Stream error");
+  }
 }
