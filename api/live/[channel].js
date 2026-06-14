@@ -14,16 +14,31 @@ export default async function handler(req, res) {
   const response = await fetch(url);
   let m3u8 = await response.text();
 
-  // مهم جدًا: إعادة كتابة الروابط
+  const baseUrl = url.substring(0, url.lastIndexOf("/") + 1);
+
+  // 🔥 1. تحويل أي playlists أو segments نسبية
   m3u8 = m3u8.replace(
-    /https?:\/\/.*?\.ts/g,
-    (match) => {
-      return `${req.headers.host}/api/ts?url=${encodeURIComponent(match)}`;
+    /(.*\.m3u8.*|.*\.ts.*)/g,
+    (line) => {
+      if (
+        line.startsWith("#") ||
+        line.startsWith("http")
+      ) return line;
+
+      return baseUrl + line;
     }
+  );
+
+  // 🔥 2. إعادة كتابة أي روابط داخلية لو حصل recursion
+  const host = `https://${req.headers.host}`;
+
+  m3u8 = m3u8.replace(
+    /(0_\d+\/index\.m3u8\?tkn=\d+)/g,
+    `${host}/api/live/${channel}/$1`
   );
 
   res.setHeader("Content-Type", "application/vnd.apple.mpegurl");
   res.setHeader("Access-Control-Allow-Origin", "*");
 
-  res.status(200).send(m3u8);
+  return res.status(200).send(m3u8);
 }
