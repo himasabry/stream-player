@@ -1,6 +1,6 @@
 const streams = {
   blue_sport_1:
-    "https://YOUR_SOURCE/index.m3u8"
+    "https://livepeercdn.studio/hls/a01399atfz7wy2oc/index.m3u8"
 };
 
 export default async function handler(req, res) {
