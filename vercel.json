@@ -1,20 +1,8 @@
 {
   "rewrites": [
     {
-      "source": "/live/super_tv_1/index.m3u8",
-      "destination": "https://livepeercdn.studio/hls/852e99hrnjvck2kd/index.m3u8"
-    },
-    {
-      "source": "/live/super_tv_2/index.m3u8",
-      "destination": "https://livepeercdn.studio/hls/a01cg40ay26tre2d/index.m3u8"
-    },
-    {
-      "source": "/live/super_tv_3/index.m3u8",
-      "destination": "https://livepeercdn.studio/hls/139bsadvu9tvxqg6/index.m3u8"
-    },
-    {
-      "source": "/live/super_tv_4/index.m3u8",
-      "destination": "https://livepeercdn.studio/hls/fbb14ggj4tb98q21/index.m3u8"
+      "source": "/live/:channel/index.m3u8",
+      "destination": "/api/live/:channel"
     }
   ]
 }
