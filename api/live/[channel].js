@@ -1,30 +1,40 @@
-const streams = {
-  blue_sport_1:
-    "https://livepeercdn.studio/hls/a01399atfz7wy2oc/index.m3u8"
-};
-
 export default async function handler(req, res) {
   const { channel } = req.query;
 
-  const stream = streams[channel];
+  console.log("CHANNEL:", channel);
 
-  if (!stream) {
-    return res.status(404).send("Channel not found");
+  const streams = {
+    blue_sport_1: "https://livepeercdn.studio/hls/a01399atfz7wy2oc/index.m3u8"
+  };
+
+  console.log("STREAM:", streams[channel]);
+
+  if (!streams[channel]) {
+    return res.status(404).json({
+      error: "Channel not found",
+      channel
+    });
   }
 
   try {
-    const response = await fetch(stream);
+    const r = await fetch(streams[channel]);
 
-    const data = await response.text();
+    if (!r.ok) {
+      return res.status(500).json({
+        error: "Failed to fetch source",
+        status: r.status
+      });
+    }
 
-    res.setHeader(
-      "Content-Type",
-      "application/vnd.apple.mpegurl"
-    );
+    const data = await r.text();
 
-    res.send(data);
+    res.setHeader("Content-Type", "application/vnd.apple.mpegurl");
+    return res.status(200).send(data);
 
-  } catch {
-    res.status(500).send("Server Error");
+  } catch (e) {
+    return res.status(500).json({
+      error: "Exception",
+      message: e.message
+    });
   }
 }
